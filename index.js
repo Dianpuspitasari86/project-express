@@ -1,11 +1,14 @@
+require ("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-const todoList = [
+
+
+let todoList = [
   {
     id: 1,
     task: "learn Express",
@@ -42,7 +45,7 @@ app.post("/", (req, res) => {
     let newTodo = {
       id: newId,
       task: req.body.task,
-      done: false
+      done: req.body.done
     };
 
     todoList.push(newTodo);
